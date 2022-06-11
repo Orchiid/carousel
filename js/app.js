@@ -24,7 +24,7 @@ const sliderVar =()=>{
     div3.className='slides';
     div4.innerHTML = `<img src="../images/img4.jpg" id='img' class='img-responsive' />`
     slider.append(div1, div2, div3, div4);    
-    slider.style.cssText = 'display: flex;margin: 0;padding: 0;width: 100%;max-width: 800px;height: 350px;position: relative;overflow: hidden; border-radius: 15px;';
+    slider.style.cssText = 'width: 100%;max-width: 800px;height: 350px;position: relative;overflow: hidden; border-radius: 15px;';
 }
 sliderVar();
 
