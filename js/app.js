@@ -4,6 +4,8 @@
 */
 const slider = document.getElementById('slider');
 const slides = document.querySelectorAll(".slides");
+const body = document.querySelector('body');
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -11,28 +13,54 @@ const slides = document.querySelectorAll(".slides");
 */
 
 const sliderVar =()=>{
-    let div1 = document.createElement('div'); 
-    div1.className='slides';
-    div1.innerHTML = `<img src="../images/img1.jpg" id='img' class='img-responsive' />`
-    let div2 = document.createElement('div');
-    div2.className='slides';
-    div2.innerHTML = `<img src="../images/img2.jpg" id='img' class='img-responsive' />`
-    let div3 = document.createElement('div');
-    div3.className='slides';
-    div3.innerHTML = `<img src="../images/img3.jpg" id='img' class='img-responsive' />`
-    let div4 = document.createElement('div');
-    div3.className='slides';
-    div4.innerHTML = `<img src="../images/img4.jpg" id='img' class='img-responsive' />`
-    slider.append(div1, div2, div3, div4);    
-    slider.style.cssText = 'width: 100%;max-width: 800px;height: 350px;position: relative;overflow: hidden; border-radius: 15px;';
+    let slider = document.createElement('div');
+    let span1 = document.createElement('span');
+    slider.style.cssText = 'display:flex;width: 100%;max-width: 800px;height: 350px;position: relative; border-radius: 15px;overflow: hidden';
+    span1.className='slides'
+    span1.innerHTML = `<img src="../images/img1.jpg" id='img image1' class='img-responsive' />`
+    span1.innerHTML += `<img src="../images/img2.jpg" id='img' class='img-responsive' />`
+    span1.innerHTML += `<img src="../images/img3.jpg" id='img' class='img-responsive' />`
+    span1.innerHTML += `<img src="../images/img4.jpg" id='img' class='img-responsive' />`
+    slider.append(span1);
+    slider.innerHTML+=`<button class="btn prev">&lt;</button>`
+    slider.innerHTML+=`<button class="btn next">&gt;</button>`
+    body.append(slider);    
 }
+
 sliderVar();
 
-let move = document.querySelectorAll('slider slides');
-let index = 0;
-window.show = function(increase) {
-  index = index + increase;
-  index = Math.min(Math.max(index,0), move.length-1);
-  move[index].scrollIntoView({behavior: 'smooth'});
-}
 
+
+const img = document.querySelectorAll('img');
+const next = document.querySelector('.next');
+const prev = document.querySelector('.prev');
+
+function stopBtn(){
+    if(num>= img.length-1){
+        next.classList.add('disable');
+    }else{
+        next.classList.remove('disable');
+    }
+    
+    if(num === 0){
+        prev.classList.add('disable');
+    }else{
+        prev.classList.remove('disable');
+    }
+}
+let num = 0;
+next.addEventListener('click', ()=>{
+    img[num].style.left = '100%';
+    num++;
+    img[num].style.left = '0%';
+
+    stopBtn();
+});
+
+prev.addEventListener('click', ()=>{
+    img[num].style.left = '-100%';
+    num--;
+    img[num].style.left = '0%';
+    
+    stopBtn();
+});

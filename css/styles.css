@@ -1,4 +1,4 @@
-  .slide {
+  .slides {
     width: 100%;
     max-width: 800px;
     height: 350px;
@@ -6,10 +6,25 @@
     transition: all 0.5s;
   }
   
-  .img-responsive {
+  .next , .prev{
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+  }
+  .next.disable , .prev.disable{
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  .slides img {
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
     object-fit: cover;
+  }
+  .slides img:first-of-type{
+    left: 0;
   }
   
   .btn {
